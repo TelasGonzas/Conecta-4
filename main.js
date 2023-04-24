@@ -190,7 +190,23 @@ const playGame = () => {
       switch (true) {
         case slots[slotPosition + 7].classList.contains("checked") &&
           !slots[slotPosition].classList.contains("checked"):
-          colorPlayerSlot();
+          switch (true) {
+            case currentPlayer === 1:
+              slots[slotPosition].classList.add("checked");
+              slots[slotPosition].classList.add("player-one");
+              currentPlayer = 2;
+              displayCurrentPlayer.innerHTML = currentPlayer;
+              displayCurrentPlayer.style.color = "rgb(255, 255, 255)";
+              break;
+
+            case currentPlayer === 2:
+              slots[slotPosition].classList.add("checked");
+              slots[slotPosition].classList.add("player-two");
+              currentPlayer = 1;
+              displayCurrentPlayer.innerHTML = currentPlayer;
+              displayCurrentPlayer.style.color = "rgb(0, 0, 0)";
+              break;
+          }
           break;
         case slots[slotPosition + 7].classList.contains("not-checked") &&
           slots[slotPosition].classList.contains("not-checked"):
@@ -202,26 +218,6 @@ const playGame = () => {
       }
       checkAllSlots();
     };
-  }
-};
-
-const colorPlayerSlot = () => {
-  switch (true) {
-    case currentPlayer === 1:
-      slots[slotPosition].classList.add("checked");
-      slots[slotPosition].classList.add("player-one");
-      currentPlayer = 2;
-      displayCurrentPlayer.innerHTML = currentPlayer;
-      displayCurrentPlayer.style.color = "rgb(255, 255, 255)";
-      break;
-
-    case currentPlayer === 2:
-      slots[slotPosition].classList.add("checked");
-      slots[slotPosition].classList.add("player-two");
-      currentPlayer = 1;
-      displayCurrentPlayer.innerHTML = currentPlayer;
-      displayCurrentPlayer.style.color = "rgb(0, 0, 0)";
-      break;
   }
 };
 
